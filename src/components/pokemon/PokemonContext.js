@@ -16,9 +16,14 @@ export default function PokemonContextProvider(props) {
         console.log('state changing', action )
         switch(action.type) { 
             case "LOAD_POKEMON_1": 
-                return { ...state, pokemon1: action.payload}
+             
+                const shuffled = action.payload.moves.sort(() => 0.5 - Math.random());
+                const selectedMoves = shuffled.slice(0, 4);
+                return { ...state, pokemon1: {name: action.payload.name, moves: selectedMoves}}
             case "LOAD_POKEMON_2": 
-                return { ...state, pokemon2: action.payload}
+                // const shuffled = action.payload.moves.sort(() => 0.5 - Math.random());
+                // const selectedMoves = shuffled.slice(0, n);
+                return { ...state}
             default: 
                 return state;
         }
