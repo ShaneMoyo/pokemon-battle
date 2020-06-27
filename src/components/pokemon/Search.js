@@ -7,9 +7,17 @@ export default function Search() {
         event.preventDefault(); 
         const pokemon = ref.current.value; 
         console.log('pokemon: ', pokemon); 
-        const result = await api.getPokemonByName(pokemon);
-        console.log('result: ', result); 
-        ref.current.value ="";
+        
+        try {
+            const result = await api.getPokemonByName(pokemon);
+            console.log('result: ', result);
+            ref.current.value ="";
+        } catch (error) { 
+            ref.current.focus();
+            ref.current.style.borderColor = 'red';
+            ref.current.style.backgroundColor = 'red';
+            console.log('error: ', error); 
+        }
     }
     return(
         <form onSubmit={event => handleSubmit(event)}>
