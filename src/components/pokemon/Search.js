@@ -1,12 +1,15 @@
 import React, { useRef } from 'react'; 
+import api from '../../services/pokemonAPI'; 
 
 export default function Search() { 
     const ref = useRef(); 
-    const handleSubmit = event => { 
+    const handleSubmit = async  event => { 
         event.preventDefault(); 
         const pokemon = ref.current.value; 
         console.log('pokemon: ', pokemon); 
-        
+        const result = await api.getPokemonByName(pokemon);
+        console.log('result: ', result); 
+        ref.current.value ="";
     }
     return(
         <form onSubmit={event => handleSubmit(event)}>
