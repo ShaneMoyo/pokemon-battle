@@ -8,13 +8,13 @@ export default function PokemonContainer() {
     return (
         <section>
              <h1>Pokemon Container</h1>
-             <Search searchHandler={setPokemon1}/> 
-             <Search searchHandler={setPokemon2}/> 
              <div>
                 <h3>Pokemon1: {pokemon1.name}</h3>
+                <Search searchHandler={setPokemon1}/>
              </div>
              <div>
                 <h3>Pokemon2: {pokemon2.name}</h3>
+                <Search searchHandler={setPokemon2}/> 
              </div>
         </section>
        

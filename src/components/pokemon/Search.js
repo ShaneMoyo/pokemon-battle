@@ -7,7 +7,8 @@ export default function Search({ searchHandler}) {
         event.preventDefault(); 
         const pokemon = ref.current.value; 
         console.log('pokemon: ', pokemon); 
-        
+        if(!ref.current.value) return;
+
         try {
             const result = await api.getPokemonByName(pokemon);
             console.log('result: ', result);
@@ -24,7 +25,7 @@ export default function Search({ searchHandler}) {
         <form onSubmit={event => handleSubmit(event)}>
             <fieldset>
                 <label htmlFor="search">Find Pokemoin</label>
-                <input id="search" ref={ref} type="text" />
+                <input id="search" ref={ref} type="text" placeholder="enter a pokemon name"/>
                 <button type="submit">Search</button>
             </fieldset>
         </form>
