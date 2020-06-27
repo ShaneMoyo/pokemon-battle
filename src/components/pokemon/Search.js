@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'; 
 import api from '../../services/pokemonAPI'; 
 
-export default function Search() { 
+export default function Search({ searchHandler}) { 
     const ref = useRef(); 
     const handleSubmit = async  event => { 
         event.preventDefault(); 
@@ -11,6 +11,7 @@ export default function Search() {
         try {
             const result = await api.getPokemonByName(pokemon);
             console.log('result: ', result);
+            searchHandler(result); 
             ref.current.value ="";
         } catch (error) { 
             ref.current.focus();
